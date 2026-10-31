@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="bs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fb">
+  <meta name="description" content="Pregledajte katalog elektronike i pronađite opremu za svaki dan.">
+  <title>NovaTech — katalog elektronike</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/product-photos.css?v=3">
+  <link rel="stylesheet" href="/dark-mode.css">
+  <link rel="stylesheet" href="/motion.css?v=2">
+  <script src="/catalog.js" defer></script>
+</head>
+<body>
+  <div class="announcement"><span class="announcement-dot"></span> Pažljivo odabrana tehnologija za svaki dan <span class="announcement-note">Sigurna kupovina · Brza dostava</span></div>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="NovaTech početna"><span class="brand-mark">N</span><span>nova<span class="brand-light">tech</span></span></a>
+    <nav class="main-nav" aria-label="Glavna navigacija"><a class="nav-current" href="#proizvodi">Proizvodi</a><a href="#kategorije">Kategorije</a><a href="#o-katalogu">O katalogu</a></nav>
+    <div class="header-actions"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Uključi tamnu temu" aria-pressed="false"><span class="theme-toggle-icon" aria-hidden="true">☾</span><span class="theme-toggle-label">Tamna tema</span></button><a class="api-link" href="/graphiql?path=/graphql" target="_blank" rel="noreferrer"><span class="api-indicator"></span> GraphQL API <span aria-hidden="true">↗</span></a></div>
+  </header>
+
+  <main>
+    <section class="hero" id="o-katalogu">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> NOVA GENERACIJA KATALOGA</div>
+        <h1>Tehnologija koja<br>prati <span>tvoj ritam.</span></h1>
+        <p>Pronađi opremu za posao, odmor i sve između. Pregledaj ponudu i suzi izbor za nekoliko sekundi.</p>
+        <a class="hero-button" href="#proizvodi">Istraži ponudu <span aria-hidden="true">↓</span></a>
+        <div class="hero-proof"><div class="proof-avatars"><i>✓</i><i>✓</i><i>✓</i></div><span>Provjeren izbor opreme<br><b id="hero-product-count">Učitavam katalog…</b></span></div>
+      </div>
+      <div class="hero-art" aria-label="Ilustracija slušalica i audio opreme" role="img">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="art-disc"><span class="art-spark spark-a">✦</span><span class="art-spark spark-b">✧</span><span class="art-headphones"><i></i><b></b><em></em></span></div>
+        <div class="art-floating float-top"><span class="float-icon">♫</span><span><b>Zvuk bez granica</b><small>Audio kolekcija</small></span></div>
+        <div class="art-floating float-bottom"><span class="float-check">✓</span><span><b>Odabir za svaki dan</b><small>Oprema kojoj vjeruješ</small></span></div>
+        <div class="art-label">SOUND<br><span>MATTERS</span></div>
+      </div>
+      <div class="hero-decoration">01 <span>/</span> 05</div>
+    </section>
+
+    <section class="category-strip" id="kategorije" aria-label="Kategorije proizvoda">
+      <div class="category-heading"><span>IZDVOJENE</span><b>Kategorije</b></div>
+      <div class="category-list" id="category-list"><div class="category-loading">Učitavanje kategorija…</div></div>
+    </section>
+
+    <section class="catalog-section" id="proizvodi">
+      <div class="section-heading">
+        <div><div class="eyebrow"><span class="eyebrow-line"></span> ISTRAŽI PONUDU</div><h2>Pronađi svoj <span>sljedeći favorit.</span></h2><p class="section-subtitle">Kvalitetna oprema, jednostavan izbor.</p></div>
+        <div class="catalog-count" id="catalog-count" aria-live="polite">Učitavam proizvode…</div>
+      </div>
+
+      <div class="catalog-layout">
+        <aside class="filters" aria-label="Filteri kataloga">
+          <div class="filter-top"><h3>Filteri</h3><button class="text-button" id="reset-filters" type="button">Poništi</button></div>
+          <label class="field-label" for="search-input">Pretraži katalog</label>
+          <div class="search-box"><span class="search-icon" aria-hidden="true"></span><input id="search-input" type="search" placeholder="Naziv ili šifra…" autocomplete="off"><kbd>/</kbd></div>
+          <div class="filter-divider"></div>
+          <fieldset class="filter-group"><legend>Kategorija</legend><div id="category-filters" class="category-filters"><span class="muted">Učitavanje…</span></div></fieldset>
+          <div class="filter-divider"></div>
+          <fieldset class="filter-group"><legend>Raspon cijene</legend><div class="price-fields"><label><span>Od (KM)</span><input id="min-price" type="number" min="0" step="0.01" placeholder="0"></label><span class="price-dash">—</span><label><span>Do (KM)</span><input id="max-price" type="number" min="0" step="0.01" placeholder="bez limita"></label></div></fieldset>
+          <div class="filter-divider"></div>
+          <label class="availability-toggle"><input id="available-only" type="checkbox"><span class="toggle-track"><i></i></span><span><b>Samo dostupni</b><small>Na stanju odmah</small></span></label>
+          <div class="filter-foot"><span class="filter-foot-icon">⌕</span><span>Filteri se primjenjuju direktno na katalog.</span></div>
+        </aside>
+
+        <div class="products-area">
+          <div class="toolbar"><div class="active-filters" id="active-filters"></div><label class="sort-label" for="sort-select">Sortiraj:<select id="sort-select"><option value="NAME_ASC">Naziv: A–Ž</option><option value="NAME_DESC">Naziv: Ž–A</option><option value="PRICE_ASC">Cijena: niža prvo</option><option value="PRICE_DESC">Cijena: viša prvo</option></select></label></div>
+          <div class="products-grid" id="products-grid" aria-live="polite"><div class="loading-state">Pripremamo katalog…</div></div>
+          <div class="empty-state" id="empty-state" hidden><div class="empty-icon">⌕</div><h3>Nema pronađenih proizvoda</h3><p>Pokušaj promijeniti pretragu ili ukloniti neki od filtera.</p><button class="outline-button" id="empty-reset" type="button">Prikaži sve proizvode</button></div>
+          <div class="error-state" id="error-state" hidden><div class="error-icon">!</div><h3>Katalog trenutno nije dostupan</h3><p id="error-message">Provjeri da li je aplikacija pokrenuta.</p><button class="outline-button" id="retry-load" type="button">Pokušaj ponovo</button></div>
+          <nav class="pagination" id="pagination" aria-label="Stranice kataloga"></nav>
+        </div>
+      </div>
+    </section>
+    <section class="bottom-note"><div class="note-icon">✳</div><div><b>Dobar izbor počinje dobrim pregledom.</b><span>Katalog proizvoda koristi GraphQL za ciljano učitavanje podataka i brzu pretragu.</span></div><a href="/graphiql?path=/graphql" target="_blank" rel="noreferrer">Istraži API <span>↗</span></a></section>
+  </main>
+  <footer class="site-footer"><a class="brand footer-brand" href="/"><span class="brand-mark">N</span><span>nova<span class="brand-light">tech</span></span></a><span>Studentski projekat · Elektronsko poslovanje</span><a href="#proizvodi">Nazad na katalog ↑</a></footer>
+</body>
+</html>

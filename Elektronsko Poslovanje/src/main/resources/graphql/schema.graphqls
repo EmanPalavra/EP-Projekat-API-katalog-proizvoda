@@ -1,0 +1,59 @@
+scalar BigDecimal
+
+type Query {
+    products(
+        filter: ProductFilterInput
+        page: Int = 0
+        size: Int = 20
+        sortBy: ProductSort = NAME
+        direction: SortDirection = ASC
+    ): ProductPage!
+    product(id: ID!): Product
+    categories: [Category!]!
+    category(id: ID!): Category
+}
+
+type ProductPage {
+    items: [Product!]!
+    page: Int!
+    size: Int!
+    totalElements: Int!
+    totalPages: Int!
+    hasNext: Boolean!
+}
+
+type Product {
+    id: ID!
+    sku: String!
+    name: String!
+    description: String
+    price: BigDecimal!
+    stock: Int!
+    active: Boolean!
+    category: Category!
+}
+
+type Category {
+    id: ID!
+    name: String!
+    description: String
+}
+
+input ProductFilterInput {
+    search: String
+    categoryId: ID
+    minPrice: BigDecimal
+    maxPrice: BigDecimal
+    availableOnly: Boolean
+}
+
+enum ProductSort {
+    NAME
+    PRICE
+}
+
+enum SortDirection {
+    ASC
+    DESC
+}
+
